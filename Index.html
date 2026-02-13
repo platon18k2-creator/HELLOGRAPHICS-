@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELLOGRAPHICS+ | Ultimate Roblox Graphics</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0a0a0f 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(138, 43, 226, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+        }
+
+        /* Header */
+        header {
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(138, 43, 226, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #8a2be2, #ff69b4, #8a2be2);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 3s ease infinite;
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+        }
+
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8a2be2, #ff69b4);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #8a2be2, #ff69b4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(138, 43, 226, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(255, 105, 180, 0.8); }
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #aaaaaa;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8a2be2, #ff69b4);
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.7);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #8a2be2;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: #ff69b4;
+            transform: translateY(-5px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #8a2be2, #ff69b4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 35, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(138, 43, 226, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .feature-card:hover::before {
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff69b4;
+            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #ff69b4;
+        }
+
+        .feature-card p {
+            color: #aaaaaa;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Shaders Preview Section */
+        .shaders-preview {
+            padding: 100px 50px;
+            background: rgba(15, 15, 25, 0.6);
+        }
+
+        .shaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .shader-card {
+            background: rgba(20, 20, 35, 0.9);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 3px solid rgba(138, 43, 226, 0.4);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .shader-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            border-color: #ff69b4;
+            box-shadow: 0 25px 60px rgba(138, 43, 226, 0.6);
+        }
+
+        .shader-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shader-preview.midnight {
+            background: linear-gradient(180deg, #0a0a1e 0%, #1a1a3e 50%, #2a2a5e 100%);
+        }
+
+        .shader-preview.day {
+            background: linear-gradient(180deg, #87ceeb 0%, #b0e0e6 50%, #ffffff 100%);
+        }
+
+        .shader-preview.golden {
+            background: linear-gradient(180deg, #ffa500 0%, #ffb84d 50%, #ffd700 100%);
+        }
+
+        .shader-preview.sunset {
+            background: linear-gradient(180deg, #ff6b35 0%, #ff8c42 50%, #ffa94d 100%);
+        }
+
+        .shader-preview.apocalypse {
+            background: linear-gradient(180deg, #8b0000 0%, #ff4500 50%, #ff6347 100%);
+        }
+
+        .shader-sun {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffff00, #ffa500);
+            box-shadow: 0 0 50px rgba(255, 255, 0, 0.8);
+            top: 30px;
+            right: 40px;
+        }
+
+        .shader-moon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #f0f0f0, #c0c0c0);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+            top: 40px;
+            right: 50px;
+        }
+
+        .shader-info {
+            padding: 25px;
+        }
+
+        .shader-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .shader-info p {
+            color: #aaaaaa;
+            font-size: 14px;
+        }
+
+        /* Installation Section */
+        .installation {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .code-block {
+            background: rgba(15, 15, 25, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: #ff69b4;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            display: block;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #8a2be2, #ff69b4);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .steps {
+            margin-top: 40px;
+        }
+
+        .step {
+            background: rgba(20, 20, 35, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #8a2be2;
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            transform: translateX(10px);
+            border-left-color: #ff69b4;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8a2be2, #ff69b4);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            text-align: center;
+            background: rgba(10, 10, 15, 0.95);
+            border-top: 2px solid rgba(138, 43, 226, 0.4);
+            margin-top: 100px;
+        }
+
+        footer p {
+            color: #aaaaaa;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #8a2be2;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff69b4;
+            transform: scale(1.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 48px; }
+            .hero p { font-size: 18px; }
+            header { padding: 20px; flex-direction: column; }
+            nav { margin-top: 20px; }
+            nav a { margin: 0 10px; }
+            .features-grid, .shaders-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">🔥 HELLOGRAPHICS+</div>
+        <nav>
+            <a href="#features">Возможности</a>
+            <a href="#shaders">Шейдеры</a>
+            <a href="#install">Установка</a>
+            <a href="https://github.com/platon18k2-creator/HELLOGRAPHICS-" target="_blank">GitHub</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>HELLOGRAPHICS+</h1>
+        <p>Профессиональные графические шейдеры для Roblox. Преврати свою игру в киношный шедевр с реалистичными эффектами освещения, атмосферы и пост-обработки.</p>
+        <div class="cta-buttons">
+            <a href="#install" class="btn btn-primary">📥 Скачать сейчас</a>
+            <a href="#shaders" class="btn btn-secondary">🎨 Посмотреть шейдеры</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features fade-in" id="features">
+        <h2 class="section-title">✨ Возможности</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🌟</span>
+                <h3>5 Профессиональных Шейдеров</h3>
+                <p>От реалистичной ночи до апокалиптического огня - каждый шейдер создан с вниманием к деталям и оптимизирован для максимальной производительности.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">💎</span>
+                <h3>Передовые Эффекты</h3>
+                <p>Bloom, Atmosphere, Depth of Field, Color Correction, Sun Rays - все современные графические техники в одном скрипте.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <h3>3 Цветовые Темы</h3>
+                <p>Измени атмосферу одним кликом с помощью пресетов для неба: Серое Небо, Полночь, и Огненный Закат.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Оптимизация</h3>
+                <p>Работает плавно даже на средних ПК. Каждый эффект тщательно настроен для баланса красоты и производительности.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🖼️</span>
+                <h3>Красивый UI</h3>
+                <p>Интуитивный интерфейс с анимациями, превью шейдеров, и 40 плавающими частицами. Перетаскивай, кликай, наслаждайся!</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔄</span>
+                <h3>Универсальность</h3>
+                <p>Работает во ВСЕХ играх Roblox. Совместим с Solara, Wave, Synapse X и другими популярными executor'ами.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shaders Preview Section -->
+    <section class="shaders-preview fade-in" id="shaders">
+        <h2 class="section-title">🎨 Галерея Шейдеров</h2>
+        <div class="shaders-grid">
+            <div class="shader-card">
+                <div class="shader-preview midnight">
+                    <div class="shader-moon"></div>
+                </div>
+                <div class="shader-info">
+                    <h3>🌙 Midnight</h3>
+                    <p>Таинственная ночь с луной и звездами. Идеален для atmospheric игр и роллплея.</p>
+                </div>
+            </div>
+
+            <div class="shader-card">
+                <div class="shader-preview day">
+                    <div class="shader-sun"></div>
+                </div>
+                <div class="shader-info">
+                    <h3>☀️ Perfect Day</h3>
+                    <p>Яркий солнечный день с облаками и реалистичным освещением.</p>
+                </div>
+            </div>
+
+            <div class="shader-card">
+                <div class="shader-preview golden">
+                    <div class="shader-sun" style="top: 120px;"></div>
+                </div>
+                <div class="shader-info">
+                    <h3>🌆 Golden Hour</h3>
+                    <p>Магический золотой час с теплым светом и атмосферным туманом.</p>
+                </div>
+            </div>
+
+            <div class="shader-card">
+                <div class="shader-preview sunset">
+                    <div class="shader-sun" style="background: radial-gradient(circle, #ff6347, #ff4500); top: 130px; left: 30px;"></div>
+                </div>
+                <div class="shader-info">
+                    <h3>🌇 Sunset</h3>
+                    <p>Теплый закат с красно-оранжевым небом и мягкими тенями.</p>
+                </div>
+            </div>
+
+            <div class="shader-card">
+                <div class="shader-preview apocalypse">
+                    <div class="shader-sun" style="background: radial-gradient(circle, #ff0000, #8b0000); box-shadow: 0 0 60px rgba(255, 0, 0, 1);"></div>
+                </div>
+                <div class="shader-info">
+                    <h3>🔥 Apocalypse</h3>
+                    <p>Огненный апокалипсис с дымом, пеплом и интенсивным блумом.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section class="installation fade-in" id="install">
+        <h2 class="section-title">📥 Установка</h2>
+        
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode()">📋 Копировать</button>
+            <code id="scriptCode">loadstring(game:HttpGet("https://raw.githubusercontent.com/platon18k2-creator/HELLOGRAPHICS-/0ea8c167b4ca650c8229e850e9af20954e2cd105/HelloGraphics%2B"))()</code>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Открой Executor</strong> - Запусти свой любимый Roblox executor (Solara, Wave, Synapse X, и т.д.)
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Скопируй Скрипт</strong> - Нажми кнопку "Копировать" выше или выдели и скопируй код вручную
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Вставь и Запусти</strong> - Вставь код в executor и нажми Execute/Inject
+            </div>
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Наслаждайся!</strong> - GUI появится с анимацией. Выбери шейдер и погрузись в новую графику!
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 HELLOGRAPHICS+ by platon18kCompany</p>
+        <p>Сделано с ❤️ для Roblox сообщества</p>
+        <div class="social-links">
+            <a href="https://github.com/platon18k2-creator/HELLOGRAPHICS-" target="_blank" title="GitHub">⭐</a>
+            <a href="#" title="Discord">💬</a>
+            <a href="#" title="YouTube">📺</a>
+        </div>
+        <p style="margin-top: 30px; font-size: 14px; color: #666;">
+            Дисклеймер: Этот скрипт предназначен только для образовательных целей. Используйте на свой страх и риск.
+        </p>
+    </footer>
+
+    <script>
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Copy code function
+        function copyCode() {
+            const code = document.getElementById('scriptCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✅ Скопировано!';
+                setTimeout(() => {
+                    btn.textContent = '📋 Копировать';
+                }, 2000);
+            });
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
